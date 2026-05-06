@@ -38,9 +38,9 @@ namespace NexusCart
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             //seeding data
-            var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DBContext>();
-            DataSeeder.SeedData(context);
-            app.Run();
+            //var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DBContext>();
+            //DataSeeder.SeedData(context);
+            //app.Run();
         }
     }
 }
