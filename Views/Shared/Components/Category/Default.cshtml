@@ -1,0 +1,10 @@
+﻿@model IEnumerable<CategoryModel>
+
+@foreach (var category in Model)
+{
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 class="panel-title"><a href="#">@category.Name</a></h4>
+		</div>
+	</div>
+}
