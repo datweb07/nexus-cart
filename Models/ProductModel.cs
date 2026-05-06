@@ -17,5 +17,6 @@ namespace NexusCart.Models
         public int CategoryId { get; set; }
         public CategoryModel ?Category { get; set; }
         public BrandModel ?Brand { get; set; }
+        public string ?ImageUrl { get; set; }
     }
 }

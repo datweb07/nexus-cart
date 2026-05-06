@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using NexusCart.Repository;
+
 namespace NexusCart
 {
     public class Program
@@ -5,6 +8,9 @@ namespace NexusCart
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<DBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
