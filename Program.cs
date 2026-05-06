@@ -9,6 +9,7 @@ namespace NexusCart
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //configure database connection
             builder.Services.AddDbContext<DBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -36,6 +37,9 @@ namespace NexusCart
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            //seeding data
+            var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DBContext>();
+            DataSeeder.SeedData(context);
             app.Run();
         }
     }
