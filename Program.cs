@@ -40,7 +40,7 @@ namespace NexusCart
             //seeding data
             //var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DBContext>();
             //DataSeeder.SeedData(context);
-            //app.Run();
+            app.Run();
         }
     }
 }
