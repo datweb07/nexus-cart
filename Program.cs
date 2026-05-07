@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NexusCart.Repository;
+using CloudinaryDotNet;
 
 namespace NexusCart
 {
@@ -8,6 +9,16 @@ namespace NexusCart
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //cloudinary configuration
+            //Account account = new Account(
+            //builder.Configuration["CloudinarySettings:CloudName"],
+            //builder.Configuration["CloudinarySettings:ApiKey"],
+            //builder.Configuration["CloudinarySettings:ApiSecret"]
+            //);
+
+            //Cloudinary cloudinary = new Cloudinary(account);
+            //builder.Services.AddSingleton(cloudinary);
 
             //configure database connection
             builder.Services.AddDbContext<DBContext>(options =>
