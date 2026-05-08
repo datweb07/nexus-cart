@@ -14,8 +14,9 @@
 					<div class="product-image-wrapper">
 						
 						<div class="single-products">
-							<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Id">
-								<div class="productinfo text-center">
+							
+							<div class="productinfo text-center">
+								<a asp-action="Details" asp-controller="Product" asp-route-id="@item.Id">
 									<img src="~/images/@item.ImageUrl" alt="@item.Name" />
 						
 									<h2>$@item.Price</h2>
@@ -25,11 +26,12 @@
 									<p>Danh mục: @item.Category.Name</p>
 
 									<p>Thương hiệu: @item.Brand.Name</p>
+								</a>
 						
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
+								<a class="btn btn-default add-to-cart" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+							</div>
+
 							
-							</a>
 						</div>
 				
 						<div class="choose">
