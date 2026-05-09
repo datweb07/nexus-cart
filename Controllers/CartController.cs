@@ -55,6 +55,8 @@ namespace NexusCart.Controllers
             HttpContext.Session.SetJson("CartItems", cartItems);
             //return RedirectToAction("Index");
 
+            TempData["success"] = "Sản phẩm đã được thêm vào giỏ hàng!";
+
             return Redirect(Request.Headers["Referer"].ToString());     //quay lại trang trước đó
         }
 
@@ -92,6 +94,9 @@ namespace NexusCart.Controllers
             {
                 HttpContext.Session.SetJson("CartItems", cartItems);
             }
+
+            TempData["success"] = "Sản phẩm đã được giảm số lượng!";
+
             return RedirectToAction("Index", "Cart");
         }
 
@@ -129,6 +134,9 @@ namespace NexusCart.Controllers
             {
                 HttpContext.Session.SetJson("CartItems", cartItems);
             }
+
+            TempData["success"] = "Sản phẩm đã được tăng số lượng!";
+
             return RedirectToAction("Index", "Cart");
         }
 
@@ -146,12 +154,16 @@ namespace NexusCart.Controllers
             {
                 HttpContext.Session.SetJson("CartItems", cartItems);
             }
+
+            TempData["success"] = "Sản phẩm đã được xóa khỏi giỏ hàng!";
+
             return RedirectToAction("Index", "Cart");
         }
 
         public async Task<IActionResult> Clear(int id)
         {
             HttpContext.Session.Remove("CartItems");
+            TempData["success"] = "Giỏ hàng đã được làm mới!";
             return RedirectToAction("Index", "Cart");
         }
     }
