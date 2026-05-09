@@ -57,5 +57,102 @@ namespace NexusCart.Controllers
 
             return Redirect(Request.Headers["Referer"].ToString());     //quay lại trang trước đó
         }
+
+        public async Task<IActionResult> Decrease(int id)
+        {
+            List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("CartItems");
+
+            CartItemModel cartItem = cartItems.Where(item => item.ProductId == id).FirstOrDefault();
+
+            //if (cartItem != null)
+            //{
+            //    cartItem.Quantity--;
+            //    if (cartItem.Quantity <= 0)
+            //    {
+            //        cartItems.Remove(cartItem);
+            //    }
+            //}
+
+            //HttpContext.Session.SetJson("CartItems", cartItems);
+
+            if (cartItem.Quantity > 1)
+            {
+                cartItem.Quantity--;
+            }
+            else
+            {
+                cartItems.RemoveAll(item => item.ProductId == id);
+            }
+
+            if (cartItems.Count == 0)
+            {
+                HttpContext.Session.Remove("CartItems");
+            }
+            else
+            {
+                HttpContext.Session.SetJson("CartItems", cartItems);
+            }
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public async Task<IActionResult> Increase(int id)
+        {
+            List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("CartItems");
+
+            CartItemModel cartItem = cartItems.Where(item => item.ProductId == id).FirstOrDefault();
+
+            //if (cartItem != null)
+            //{
+            //    cartItem.Quantity--;
+            //    if (cartItem.Quantity <= 0)
+            //    {
+            //        cartItems.Remove(cartItem);
+            //    }
+            //}
+
+            //HttpContext.Session.SetJson("CartItems", cartItems);
+
+            if (cartItem.Quantity >= 1)
+            {
+                cartItem.Quantity++;
+            }
+            else
+            {
+                cartItems.RemoveAll(item => item.ProductId == id);
+            }
+
+            if (cartItems.Count == 0)
+            {
+                HttpContext.Session.Remove("CartItems");
+            }
+            else
+            {
+                HttpContext.Session.SetJson("CartItems", cartItems);
+            }
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public async Task<IActionResult> Remove(int id)
+        {
+            List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("CartItems");
+
+            cartItems.RemoveAll(item => item.ProductId == id);
+
+            if (cartItems.Count == 0)
+            {
+                HttpContext.Session.Remove("CartItems");
+            }
+            else
+            {
+                HttpContext.Session.SetJson("CartItems", cartItems);
+            }
+            return RedirectToAction("Index", "Cart");
+        }
+
+        public async Task<IActionResult> Clear(int id)
+        {
+            HttpContext.Session.Remove("CartItems");
+            return RedirectToAction("Index", "Cart");
+        }
     }
 }
