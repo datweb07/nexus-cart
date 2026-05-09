@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NexusCart.Repository;
 
 namespace NexusCart.Areas.Admin.Controllers
@@ -11,9 +12,9 @@ namespace NexusCart.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Products.OrderByDescending(p => p.Id).Include(p => p.Category).ToListAsync());
         }
     }
 }
