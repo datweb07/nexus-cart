@@ -13,7 +13,7 @@
 		</div>
 		<div class="form-group">
 			<label asp-for="Description" class="control-label"></label>
-			<input asp-for="Description" class="form-control" />
+			<textarea asp-for="Description" class="form-control"></textarea>
 			<span asp-validation-for="Description" class="text-danger"></span>
 		</div>
 		<div class="form-group">
@@ -36,9 +36,9 @@
 			<span asp-validation-for="BrandId" class="text-danger"></span>
 		</div>
 		<div class="form-group">
-			<label asp-for="ImageUrl" class="control-label"></label>
-			<input asp-for="ImageUrl" class="form-control" />
-			<span asp-validation-for="ImageUrl" class="text-danger"></span>
+			<label asp-for="ImageUrl" class="control-label">Image</label>
+			<input asp-for="ImageFile" class="form-control" />
+			<span asp-validation-for="ImageFile" class="text-danger"></span>
 		</div>
 		<div class="form-group">
 			<label asp-for="Slug" class="control-label"></label>
@@ -52,3 +52,13 @@
 
 	<a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+	<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+	<script>
+		CKEDITOR.replace( 'Description' );
+	</script>
+}
