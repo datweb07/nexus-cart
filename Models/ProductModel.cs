@@ -30,7 +30,7 @@ namespace NexusCart.Models
 
         public BrandModel ?Brand { get; set; }
 
-        public string ?ImageUrl { get; set; }
+        public string ?ImageUrl { get; set; } = "default.jpg";
 
         [NotMapped]
         [File]
