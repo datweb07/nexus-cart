@@ -15,7 +15,7 @@
 						<a>
 							<div class="single-products">
 								<div class="productinfo text-center">
-									<img src="~/images/@item.ImageUrl" alt="@item.Name" />
+									<img src="~/media/products/@item.ImageUrl" alt="@item.Name" />
 						
 									<h2>$@item.Price</h2>
 						
@@ -23,7 +23,7 @@
 
 									<p>Thương hiệu: @item.Brand.Name</p>
 						
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									<a class="btn btn-default add-to-cart" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 								</div>
 								<div class="product-overlay">
 									<div class="overlay-content">
