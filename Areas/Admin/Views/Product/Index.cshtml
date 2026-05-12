@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<ProductModel>
 @{
-	ViewData["Title"] = "Product Management";
+    ViewData["Title"] = "Product Management";
 }
+
 <h1>Product Management</h1>
-<a asp-action="Create" asp-controller="Product">Add Product</a>
+<a asp-action="Create" asp-controller="Product" class="btn btn-primary mb-3">Add Product</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,16 +26,27 @@
             <tr>
                 <th scope="row">@product.Id</th>
                 <td>@product.Name</td>
-                <td>@product.Description</td>
+                
+                <td style="max-width: 300px;">
+                    <div style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                        @Html.Raw(product.Description)
+                    </div>
+                </td>
+                
                 <td>@product.Price</td>
-                <td><img src="@product.ImageUrl" alt="@product.Name" width="100" /></td>
+                
+                <td>
+                    <img src="/media/products/@product.ImageUrl" alt="@product.Name" width="100" style="object-fit: cover; border-radius: 5px;" />
+                </td>
+                
                 <td>@product.Slug</td>
                 <td>@product.CategoryId</td>
                 <td>@product.BrandId</td>
                 <td>
                     <a class="btn btn-warning btn-sm" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
-					<a class="btn btn-danger btn-sm" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
             </tr>
-		}
+        }
     </tbody>
 </table>
