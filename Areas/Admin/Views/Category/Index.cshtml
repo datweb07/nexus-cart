@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CategoryModel>
+@{
+	ViewData["Title"] = "Category Management";
+}
+
+<h1>Category Management</h1>
+<a asp-action="Create" asp-controller="Category" class="btn btn-primary mb-3">Add Category</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Category Name</th>
+			<th scope="col">Category Description</th>
+			<th scope="col">Category Slug</th>
+			<th scope="col">Category Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model)
+		{
+			<tr>
+				<th scope="row">@product.Id</th>
+				<td>@product.Name</td>
+                
+				<td style="max-width: 300px;">
+					<div style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+						@Html.Raw(product.Description)
+					</div>
+				</td>
+                
+				<td>@product.Slug</td>
+				<td>
+					<a class="btn btn-warning btn-sm" asp-controller="Category" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+					<a class="btn btn-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
