@@ -29,6 +29,15 @@
 				</td>
                 
 				<td>@product.Slug</td>
+				<td>@if (product.Status == 1)
+					{
+						<span class="badge bg-success">Hiển thị</span>
+					}
+					else
+					{
+						<span class="badge bg-secondary">Ẩn</span>
+					}
+				</td>	
 				<td>
 					<a class="btn btn-warning btn-sm" asp-controller="Category" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
 					<a class="btn btn-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
