@@ -60,6 +60,16 @@ namespace NexusCart
                 pattern: "{area:exists}/{controller=Product}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
+                name: "category",
+                pattern: "/category/{Slug?}",
+                defaults: new { controller = "Category", action = "Index" });
+
+            app.MapControllerRoute(
+                name: "brand",
+                pattern: "/brand/{Slug?}",
+                defaults: new { controller = "Brand", action = "Index" });
+
+            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
