@@ -44,7 +44,7 @@
                 <td>@product.BrandId</td>
                 <td>
                     <a class="btn btn-warning btn-sm" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
-                    <a class="btn btn-danger btn-sm" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                    <a class="btn btn-danger btn-sm confirmDeletion" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
                 </td>
             </tr>
         }
