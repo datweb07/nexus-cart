@@ -1,6 +1,6 @@
 ﻿@model UserModel
 @{
-	ViewData["Title"] = "Account";
+	ViewData["Title"] = "Register";
 }
 
 <section id="form">
@@ -8,10 +8,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-1">
-				<div class="login-form">
-					<!--login form-->
-					<h2>Login to your account</h2>
-					<form asp-controller="Account" asp-action="Login">
+				<div class="signup-form">
+					<!--sign up form-->
+					<h2>New User Signup!</h2>
+					<form asp-controller="Account" asp-action="Register">
 						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 						<div class="form-group">
 							<label asp-for="UserName" class="control-label"></label>
@@ -20,15 +20,26 @@
 						</div>
 
 						<div class="form-group">
+							<label asp-for="Email" class="control-label"></label>
+							<input asp-for="Email" class="form-control" />
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+
+						<div class="form-group">
 							<label asp-for="Password" class="control-label"></label>
 							<input asp-for="Password" type="password" class="form-control" />
 							<span asp-validation-for="Password" class="text-danger"></span>
 						</div>
-						<button type="submit" class="btn btn-default">Login</button>
-						<a asp-controller="Account" asp-action="Register">Create an account</a> 
+						<button type="submit" class="btn btn-default">Register</button>
 					</form>
-				</div><!--/login form-->
+				</div><!--/sign up form-->
 			</div>
 		</div>
 	</div>
 </section><!--/form-->
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
