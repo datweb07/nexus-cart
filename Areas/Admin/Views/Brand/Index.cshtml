@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BrandModel>
+@{
+	ViewData["Title"] = "Brand Management";
+}
+
+<h1>Brand Management</h1>
+<a asp-action="Create" asp-controller="Brand" class="btn btn-primary mb-3">Add Brand</a>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Brand Name</th>
+			<th scope="col">Brand Description</th>
+			<th scope="col">Brand Slug</th>
+			<th scope="col">Brand Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model)
+		{
+			<tr>
+				<th scope="row">@product.Id</th>
+				<td>@product.Name</td>
+
+				<td style="max-width: 300px;">
+					<div style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+						@Html.Raw(product.Description)
+					</div>
+				</td>
+
+				<td>@product.Slug</td>
+				<td>
+					@if (product.Status == 1)
+					{
+						<span class="badge bg-success">Hiển thị</span>
+					}
+					else
+					{
+						<span class="badge bg-secondary">Ẩn</span>
+					}
+				</td>
+				<td>
+					<a class="btn btn-warning btn-sm" asp-controller="Brand" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+					<a class="btn btn-danger btn-sm" asp-controller="Brand" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
