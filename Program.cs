@@ -38,6 +38,8 @@ namespace NexusCart
 
             var app = builder.Build();
 
+            app.UseStatusCodePagesWithRedirects("/Home/Error?statusCode={0}");
+
             app.UseSession();
 
             // Configure the HTTP request pipeline.
