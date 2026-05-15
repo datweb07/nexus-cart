@@ -39,6 +39,7 @@
 			<label asp-for="ImageUrl" class="control-label">Image</label>
 			<input asp-for="ImageFile" class="form-control" />
 			<span asp-validation-for="ImageFile" class="text-danger"></span>
+			<img id="imgpreview" alt="Image Preview" style="max-width: 200px; margin-top: 10px; display: none;" />
 		</div>
 		<div class="form-group">
 			<label asp-for="Slug" class="control-label"></label>
@@ -58,6 +59,11 @@
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");
 	}
 	<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+	<script>
+		$("#ImageFile").change(function(){
+			readURL(this);
+		});
+	</script>
 	<script>
 		CKEDITOR.replace( 'Description' );
 	</script>
