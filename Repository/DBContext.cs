@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using NexusCart.Models;
 
 namespace NexusCart.Repository
 {
-    public class DBContext : DbContext
+    public class DBContext : IdentityDbContext<AppUserModel>
     {
         public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
