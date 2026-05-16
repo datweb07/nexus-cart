@@ -63,15 +63,15 @@ namespace NexusCart.Controllers
             {
                 AppUserModel appUser = new AppUserModel
                 {
-                    UserName = user.Email,
+                    UserName = user.UserName,
                     Email = user.Email,
                 };
 
-                IdentityResult result = await _userManager.CreateAsync(appUser);
+                IdentityResult result = await _userManager.CreateAsync(appUser, user.Password);
 
                 if (result.Succeeded)
                 {
-                    TempData["success"] = "Registration successful!";   
+                    TempData["success"] = "Registration successful!";
                     return RedirectToAction("Login");
                 }
                 else
@@ -83,6 +83,13 @@ namespace NexusCart.Controllers
                 }
             }
             return View();
-        } 
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            TempData["success"] = "Logout successful!";
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
