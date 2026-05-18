@@ -31,7 +31,22 @@ namespace NexusCart.Controllers
                 _context.Orders.Add(order);
                 _context.SaveChanges();
 
-                TempData["success"] = "Order placed successfully!";
+                List<CartItemModel> cartItems = HttpContext.Session.GetJson<List<CartItemModel>>("CartItems") ?? new List<CartItemModel>();
+                foreach (var item in cartItems)
+                {
+                    var orderDetail = new OrderDetailsModel();
+                    orderDetail.UserName = userEmail;
+                    orderDetail.OrderCode = oderCode;
+                    orderDetail.ProductId = item.ProductId;
+                    orderDetail.Quantity = item.Quantity;
+                    orderDetail.Price = item.Price;
+
+                    _context.OrderDetails.Add(orderDetail);
+                    _context.SaveChanges();
+                }
+                HttpContext.Session.Remove("CartItems");
+                TempData["SuccessMessage"] = "Order placed successfully!";
+
                 return RedirectToAction("Index", "Cart");
             }
             return View();
