@@ -1,6 +1,6 @@
-﻿@model IEnumerable<OrderModel>
+﻿@model IEnumerable<OrderDetailsModel>
 @{
-	ViewData["Title"] = "Orders";
+	ViewData["Title"] = "Order Details";
 }
 
 <h1>Order Management</h1>
@@ -20,7 +20,7 @@
 			<tr>
 				<th scope="row">@item.Id</th>
 				<th scope="row">@item.OrderCode</th>
-				<td>@item.UserName</td>
+				@* <td>@item.UserName</td>
 				<td>@item.CreatedDate</td>
 
 				<td>
@@ -32,13 +32,11 @@
 					{
 						<span class="badge bg-secondary">Success</span>
 					}
-				</td>
-				<td>
-					<a class="btn btn-warning btn-sm" asp-controller="Order" asp-action="ViewOrder" asp-route-ordercode="@item.OrderCode">View</a>
-					<a class="btn btn-danger btn-sm confirmDeletion" asp-controller="Order" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-				</td>
-				
+				</td> *@
 			</tr>
 		}
 	</tbody>
+	<td>
+		<a class="btn btn-secondary btn-sm" asp-controller="Order" asp-action="Index">Back</a>
+	</td>
 </table>
