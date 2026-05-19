@@ -14,9 +14,16 @@ namespace NexusCart.Areas.Admin.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Orders.OrderByDescending(p => p.Id).ToListAsync());
         }
-    }
+
+        public async Task<IActionResult> ViewOrder(string orderCode)
+        {
+            var orderDetails = await _context.OrderDetails.Include(od => od.Product).Where(od => od.OrderCode == orderCode).ToListAsync();
+            return View(orderDetails);
+        }
+    } 
 }
